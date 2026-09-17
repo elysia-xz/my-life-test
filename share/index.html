@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>我的人生测试</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --paper:#F6F4EF; --paper-2:#FCFBF8; --ink:#232120; --ink-2:#4A4642; --ink-3:#8A8078; --ink-4:#B5ADA4;
+  --line:#E4DED4; --line-2:#D6CFC2; --accent:#B0543C; --accent-wash:#F3E4DE;
+  --pos:#4C7A5E; --pos-wash:#E3EDE5;
+  --serif:"Songti SC","STSong","Noto Serif SC",ui-serif,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:48px 24px 80px}
+header.top{border-bottom:1px solid var(--line-2);padding-bottom:28px;margin-bottom:8px}
+.top h1{font-family:var(--serif);font-size:30px;font-weight:400;letter-spacing:.02em;margin:0 0 8px}
+.top .sub{color:var(--ink-3);font-size:13px}
+.top .meta{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--ink-4);letter-spacing:.04em}
+.sec{padding-top:40px}
+.sec-head{margin-bottom:18px}
+.sec-label{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.sec h2{font-family:var(--serif);font-size:20px;font-weight:400;margin:0;letter-spacing:.02em}
+h3.sub{font-size:12px;font-weight:500;color:var(--ink-3);letter-spacing:.08em;margin:26px 0 10px;
+  text-transform:uppercase;font-family:var(--mono)}
+.grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.stat{background:var(--paper-2);padding:16px 18px}
+.stat-k{font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
+.stat-v{font-family:var(--mono);font-size:22px;margin:6px 0 2px;letter-spacing:-.01em}
+.stat-v small{font-size:12px;color:var(--ink-3)}
+.stat-v.pos{color:var(--pos)}
+.stat-s{font-size:11.5px;color:var(--ink-4);min-height:16px}
+.bars{margin-top:6px}
+.bar-row{display:flex;align-items:center;gap:12px;padding:7px 0}
+.bar-name{width:64px;flex:none;font-size:13px;color:var(--ink-2)}
+.bar-track{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar-track i{display:block;height:100%;background:var(--accent);opacity:.82}
+.bar-val{width:88px;flex:none;text-align:right;font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.note-line{font-size:12.5px;color:var(--ink-3);margin:2px 0 10px}
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.row{display:flex;align-items:baseline;gap:14px;padding:11px 2px;border-bottom:1px solid var(--line)}
+.row.dim{opacity:.5}
+.row-date{width:104px;flex:none;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.row-title{flex:1;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row-title em{font-style:normal;color:var(--ink-3);font-size:12.5px}
+.row-amt{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.row-amt.pos{color:var(--pos)}
+.row-tag{font-size:11.5px;color:var(--ink-3);border:1px solid var(--line-2);border-radius:2px;padding:1px 7px}
+.habit{padding:14px 0;border-bottom:1px solid var(--line)}
+.habit:first-of-type{border-top:1px solid var(--line)}
+.habit-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:9px;flex-wrap:wrap}
+.habit-name{font-size:14px}
+.habit-meta{font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
+.heat{display:flex;gap:3px;flex-wrap:wrap}
+.cell{width:15px;height:15px;border-radius:2px;background:var(--line);display:block}
+.cell.lv1{background:#C9DCCF}
+.cell.lv2{background:#8FB79A}
+.cell.lv3{background:var(--pos)}
+.chart{margin:4px 0 0;border:1px solid var(--line);border-radius:4px;background:var(--paper-2);padding:14px 16px}
+.prog{margin-top:16px}
+.prog-track{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.prog-track i{display:block;height:100%;background:var(--pos);opacity:.85}
+.prog-text{font-size:11.5px;color:var(--ink-3);margin-top:7px;font-family:var(--mono)}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px}
+.media{display:flex;gap:12px;border:1px solid var(--line);border-radius:4px;padding:12px;background:var(--paper-2)}
+.media-cover{width:52px;height:72px;flex:none;border-radius:3px;overflow:hidden;background:var(--accent-wash);
+  display:flex;align-items:center;justify-content:center}
+.media-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.media-cover .ph{font-family:var(--serif);font-size:20px;color:var(--accent);opacity:.7}
+.media-body{min-width:0;flex:1}
+.media-title{font-size:13.5px;line-height:1.4;margin-bottom:2px}
+.media-meta{font-size:11.5px;color:var(--ink-3);margin-bottom:4px}
+.media-stars{font-size:11.5px;color:var(--accent);letter-spacing:.08em;margin-bottom:4px}
+.media-cmt{font-size:12px;color:var(--ink-2);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line-2);
+  font-size:11.5px;color:var(--ink-4);font-family:var(--mono);letter-spacing:.03em;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.empty{padding:40px 0;color:var(--ink-3);font-size:13px}
+@media(max-width:720px){
+  .wrap{padding:32px 18px 60px}
+  .top h1{font-size:24px}
+  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
+  .row-date{width:78px}
+  .bar-val{width:72px}
+}
+@media(max-width:420px){
+  .grid-3,.grid-4{grid-template-columns:1fr}
+  .cell{width:12px;height:12px}
+}
+@media print{body{background:#fff}.sec{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<h1>我的人生测试</h1>
+<div class="meta">更新于 2026-09-17 · 只读分享页</div>
+</header>
+<section class="sec" id="overview"><div class="sec-head"><span class="sec-label">概览</span><h2>一眼看全</h2></div><div class="grid grid-4"><div class="stat"><div class="stat-k">本月支出</div><div class="stat-v">¥42</div><div class="stat-s"></div></div><div class="stat"><div class="stat-k">习惯打卡率</div><div class="stat-v">3%</div><div class="stat-s">近 30 天</div></div></div></section>
+<section class="sec" id="money"><div class="sec-head"><span class="sec-label">记账</span><h2>2026 年 09 月</h2></div><div class="grid grid-3"><div class="stat"><div class="stat-k">支出</div><div class="stat-v">¥42</div><div class="stat-s"></div></div><div class="stat"><div class="stat-k">收入</div><div class="stat-v pos">¥0</div><div class="stat-s">&nbsp;</div></div><div class="stat"><div class="stat-k">结余</div><div class="stat-v">¥-42</div><div class="stat-s">&nbsp;</div></div></div><h3 class="sub">消费结构</h3><div class="note-line">月预算 ¥5,000 · 已用 1%</div><div class="bars"><div class="bar-row"><span class="bar-name">餐饮</span><span class="bar-track"><i style="width:100.0%"></i></span><span class="bar-val">¥42</span></div></div><h3 class="sub">最近记录</h3><ul class="rows"><li class="row"><span class="row-date">9月15日</span><span class="row-title">餐饮 · 收尾验证</span><span class="row-amt ">−¥42</span></li></ul></section>
+<section class="sec" id="habits"><div class="sec-head"><span class="sec-label">习惯</span><h2>近 30 天打卡</h2></div><div class="habit"><div class="habit-head"><span class="habit-name">阅读</span><span class="habit-meta">每日 30 分钟 · 完成 1/30 天</span></div><div class="heat"><i class="cell lv0" title="2026-08-19"></i><i class="cell lv0" title="2026-08-20"></i><i class="cell lv0" title="2026-08-21"></i><i class="cell lv0" title="2026-08-22"></i><i class="cell lv0" title="2026-08-23"></i><i class="cell lv0" title="2026-08-24"></i><i class="cell lv0" title="2026-08-25"></i><i class="cell lv0" title="2026-08-26"></i><i class="cell lv0" title="2026-08-27"></i><i class="cell lv0" title="2026-08-28"></i><i class="cell lv0" title="2026-08-29"></i><i class="cell lv0" title="2026-08-30"></i><i class="cell lv0" title="2026-08-31"></i><i class="cell lv0" title="2026-09-01"></i><i class="cell lv0" title="2026-09-02"></i><i class="cell lv0" title="2026-09-03"></i><i class="cell lv0" title="2026-09-04"></i><i class="cell lv0" title="2026-09-05"></i><i class="cell lv0" title="2026-09-06"></i><i class="cell lv0" title="2026-09-07"></i><i class="cell lv0" title="2026-09-08"></i><i class="cell lv0" title="2026-09-09"></i><i class="cell lv0" title="2026-09-10"></i><i class="cell lv0" title="2026-09-11"></i><i class="cell lv0" title="2026-09-12"></i><i class="cell lv0" title="2026-09-13"></i><i class="cell lv0" title="2026-09-14"></i><i class="cell lv2" title="2026-09-15"></i><i class="cell lv0" title="2026-09-16"></i><i class="cell lv0" title="2026-09-17"></i></div></div></section>
+<footer><span>我的人生测试</span><span>由个人工作台生成</span></footer>
+</div>
+</body>
+</html>
